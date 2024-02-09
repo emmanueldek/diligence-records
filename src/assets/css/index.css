@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: "Hanken Grotesk", sans-serif;
+  background-color: #f7f7f7;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+#modal-root {
+  width: 100vw;
+}
+
+.truncate_news_header {
+  display: -webkit-box;
+  width: 100%;
+  max-width: 430px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.auth-hero{
+    background: url("https://res.cloudinary.com/dnir0cslk/image/upload/v1706152849/recordsbg_eubf1m.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;  
+}

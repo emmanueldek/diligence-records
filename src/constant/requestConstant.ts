@@ -38,7 +38,7 @@ export const orgTab = [
   },
   {
     id: 4,
-    name: "Bankruptcy History",
+    name: "Credit History",
   },
   {
     id: 5,

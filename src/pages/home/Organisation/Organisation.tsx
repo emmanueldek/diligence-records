@@ -169,7 +169,7 @@ function OrganisationProfile() {
                 {activeTab === "Management" && (
                   <ManagementTab data={data?.data?.management} />
                 )}
-                {activeTab === "Bankruptcy History" && (
+                {activeTab === "Credit History" && (
                   <BankruptcyHistoryTab data={data?.data?.creditHistory} />
                 )}
                 {activeTab === "Tax Compliance" && (

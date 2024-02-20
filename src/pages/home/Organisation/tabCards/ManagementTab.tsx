@@ -5,11 +5,11 @@ type TProps = {
   data?: TOrgManagement[];
 };
 
-const columns: TColumn[] = [
-  { field: "name", header: "Name" },
-  { field: "position", header: "Position" },
-  { field: "location", header: "Location" },
-];
+// const columns: TColumn[] = [
+//   { field: "name", header: "Name" },
+//   { field: "position", header: "Position" },
+//   { field: "location", header: "Location" },
+// ];
 
 const ManagementTab: React.FC<TProps> = ({ data }) => {
   console.log(data);

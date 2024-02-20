@@ -1,4 +1,4 @@
-import { TColumn, TOrgManagement } from "@/types/organizationTypes";
+import { TOrgManagement } from "@/types/organizationTypes";
 import dangote from "@/assets/images/dangote.jpeg";
 
 type TProps = {

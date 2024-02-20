@@ -33,6 +33,7 @@ type ExecutiveProps = {
   position: string;
   location: string;
   id: string;
+  executiveAvatar?: string;
 };
 
 type OrganizationProps = {
@@ -411,7 +412,7 @@ function SearchResult() {
                           key={item?._id}
                           id={item?._id}
                           name={item?.profile?.executiveName}
-                          image={item?.executiveAvatar}
+                          image={item?.profile?.executiveAvatar}
                           position={item?.profile?.executivePosition}
                           location={item?.profile?.location}
                         />

@@ -8,6 +8,7 @@ import {
 import { AuthLayout, PageLayout, WorkspaceLayout } from "./layout";
 import { ErrorPage } from "./pages";
 import DocumentLayout from "./layout/document";
+// import Home from "./pages/viewDoc/Home";
 
 function App() {
   return (
@@ -24,7 +25,16 @@ function App() {
         {appRoutes.map((appRoute, index) => {
           const { path, element } = appRoute;
 
-          return <Route key={index} path={path} element={element} />;
+          return (
+            <>
+              <Route key={index} path={path} element={element} />;
+              {/* <Route
+                path="/view-document"
+                element={<Home />}
+                key="/view-document/:documentUrl"
+              /> */}
+            </>
+          );
         })}
       </Route>
 

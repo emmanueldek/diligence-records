@@ -5,6 +5,7 @@ import {
 } from "@/types/organizationTypes";
 import AvailableDocuments from "./AvailableDocuments";
 import { GoPaperclip } from "react-icons/go";
+import { Link } from "react-router-dom";
 
 type TProps = {
   data?: TOrgFinancialStatements[];
@@ -19,14 +20,34 @@ const columns: TColumn[] = [
 ];
 
 const FinancialStatementsTab: React.FC<TProps> = ({ data }) => {
+  const handlePreview = () => {
+    window.print();
+  };
   const contactData: TTableOrgFinancialStatements[] = data
     ? data.map((el) => ({
         year: el?.year,
         audFinancials: (
           <div className="w-[300px] overflow-hidden truncate">
-            <a href={el.fsDocuments} className=" text-blue-600">
+            {/* <Link
+              to={`/view-document/${el?.fsDocuments.substring}`}
+              target="_blank"
+              className=" text-blue-600"
+            >
               {el?.fsDocuments}
-            </a>
+            </Link> */}
+            {/* <embed
+              src={el?.fsDocuments}
+              type="application/pdf"
+              width="100%"
+              height="600px"
+            /> */}
+
+            {/* <p className="text-blue-600 cursor-pointer" onClick={handlePreview}>
+              {el?.fsDocuments}
+            </p> */}
+            {/* <iframe src={el.fsDocuments} allowFullScreen>
+              {el.fsDocuments}
+            </iframe> */}
           </div>
         ),
         audBy: el?.audBy,

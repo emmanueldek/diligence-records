@@ -134,6 +134,7 @@ export type TExecutiveSearchSchema = {
     executiveName: string;
     executivePosition: string;
     location: string;
+    executiveAvatar: string;
   };
   status: string;
   updatedAt: string;

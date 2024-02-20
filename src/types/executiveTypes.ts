@@ -39,6 +39,7 @@ export type TExeProfile = {
   location: string;
   website: string;
   executivePosition: string;
+  executiveAvatar: string;
 };
 
 export type TExeManagement = {

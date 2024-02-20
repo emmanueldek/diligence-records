@@ -34,6 +34,7 @@ const ExecutivePage = () => {
   const { data } = useQuery(["getAnExecutive", id], () =>
     getAnExecutive(id as string),
   );
+
   const [isSuggestionForm, setSuggestionForm] = useState<boolean>(false);
 
   const { mutate } = useMutation(createWatchList, {
@@ -167,7 +168,7 @@ const ExecutivePage = () => {
               <div className="rounded-md w-[56px] h-[56px] overflow-hidden">
                 <img
                   className="w-full h-full object-cover"
-                  src={data?.data?.executiveAvatar}
+                  src={data?.data?.profile?.executiveAvatar}
                   alt="Executive logo"
                 />
               </div>

@@ -24,20 +24,9 @@ const FinancialStatementsTab: React.FC<TProps> = ({ data }) => {
         year: el?.year,
         audFinancials: (
           <div className="w-[300px] overflow-hidden truncate">
-            {/* <Link
-              to={`/view-document/${el?.fsDocuments.substring}`}
-              target="_blank"
-              className=" text-blue-600"
-            >
+            <a href={el.fsDocuments} target="_blank" className=" text-blue-600">
               {el?.fsDocuments}
-            </Link> */}
-            {/* <embed
-              src={el?.fsDocuments}
-              type="application/pdf"
-              width="100%"
-              height="600px"
-            /> */}
-
+            </a>
             {/* <p className="text-blue-600 cursor-pointer" onClick={handlePreview}>
               {el?.fsDocuments}
             </p> */}

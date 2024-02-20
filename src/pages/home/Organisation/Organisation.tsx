@@ -12,10 +12,7 @@ import {
   BankruptcyHistoryTab,
   TaxComplianceTab,
   LegalRegulatoryTab,
-  EnvironmentalComplianceTab,
-  ContractualObligationsTab,
   InsuranceCoverageTab,
-  SupplyChainTab,
   OwnershipStructureTab,
 } from "./tabCards";
 

@@ -1,6 +1,5 @@
 import { TColumn } from "@/types/executiveTypes";
 import {
-  TOrgManagement,
   TOrgOwnershipStructure,
   TOrgShareHolders,
 } from "@/types/organizationTypes";

@@ -5,7 +5,6 @@ import {
 } from "@/types/organizationTypes";
 import AvailableDocuments from "./AvailableDocuments";
 import { GoPaperclip } from "react-icons/go";
-import { Link } from "react-router-dom";
 
 type TProps = {
   data?: TOrgFinancialStatements[];
@@ -20,9 +19,6 @@ const columns: TColumn[] = [
 ];
 
 const FinancialStatementsTab: React.FC<TProps> = ({ data }) => {
-  const handlePreview = () => {
-    window.print();
-  };
   const contactData: TTableOrgFinancialStatements[] = data
     ? data.map((el) => ({
         year: el?.year,

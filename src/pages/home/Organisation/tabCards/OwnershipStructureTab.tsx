@@ -1,10 +1,19 @@
-import { TOrgOwnershipStructure } from "@/types/organizationTypes";
+import { TColumn } from "@/types/executiveTypes";
+import {
+  TOrgManagement,
+  TOrgOwnershipStructure,
+  TOrgShareHolders,
+} from "@/types/organizationTypes";
 
 type TProps = {
   data?: TOrgOwnershipStructure;
 };
 
 const OwnershipStructureTab: React.FC<TProps> = ({ data }) => {
+  const columns = [
+    { field: "name", header: "Name" },
+    { field: "percentage", header: "Percentage (%)" },
+  ];
   return (
     <div className="w-full scrollbar-hide overflow-x-auto">
       <div>
@@ -17,7 +26,7 @@ const OwnershipStructureTab: React.FC<TProps> = ({ data }) => {
 
         <div className="border-b border-grey-50 w-full py-4">
           <h4 className="leading-[19px] font-bold mb-2">Shareholders</h4>
-          <ul className="list-disc list-inside pl-2 font-light leading-[20px] text-grey-400">
+          {/* <ul className="list-disc list-inside pl-2 font-light leading-[20px] text-grey-400">
             {data?.shareHolders.map((el, i) => {
               return (
                 <li key={`${i}-shareHolders`}>
@@ -25,9 +34,36 @@ const OwnershipStructureTab: React.FC<TProps> = ({ data }) => {
                 </li>
               );
             })}
-          </ul>
+          </ul> */}
+          <table className="w-full">
+            <thead className="text-sm text-grey-400 font-normal bg-grey-50">
+              <tr className=" h-[45px] px-7 text-left">
+                {columns &&
+                  columns.map((head, i) => (
+                    <th key={i} className="pl-4">
+                      {head.header}{" "}
+                    </th>
+                  ))}
+              </tr>
+            </thead>
+            <tbody className="w-full">
+              {data &&
+                data.shareHolders?.map((row, i) => (
+                  <tr
+                    key={i}
+                    className="h-[40px] text-sm text-[#151515] font-[500]"
+                  >
+                    {columns?.map((col: TColumn, i) => (
+                      <td key={i} className="pl-4 font-light text-textGrey">
+                        {row[col.field as keyof TOrgShareHolders]}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+            </tbody>
+          </table>
         </div>
-
+        {/* 
         <div className="py-4">
           <h4 className="leading-[19px] font-bold mb-2">
             Governance Structure
@@ -35,7 +71,7 @@ const OwnershipStructureTab: React.FC<TProps> = ({ data }) => {
           <p className="font-light text-grey-400 leading-[20px]">
             {data?.governanceStructure}
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

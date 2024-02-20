@@ -48,22 +48,22 @@ export const orgTab = [
     id: 6,
     name: "Legal/Regulatory",
   },
-  {
-    id: 7,
-    name: "Environmental Compliance",
-  },
-  {
-    id: 8,
-    name: "Contractual Obligations",
-  },
+  // {
+  //   id: 7,
+  //   name: "Environmental Compliance",
+  // },
+  // {
+  //   id: 8,
+  //   name: "Contractual Obligations",
+  // },
   {
     id: 9,
     name: "Insurance Coverage",
   },
-  {
-    id: 10,
-    name: "Supply Chain Information",
-  },
+  // {
+  //   id: 10,
+  //   name: "Supply Chain Information",
+  // },
   {
     id: 11,
     name: "References",

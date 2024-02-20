@@ -179,22 +179,22 @@ function OrganisationProfile() {
                   <LegalRegulatoryTab data={data?.data.legalRegulatory} />
                 )}
                 {/* {activeTab === "Credit Reports" && <CreditReportTab data={data?.data.creditHistory} />} */}
-                {activeTab === "Contractual Obligations" && (
+                {/* {activeTab === "Contractual Obligations" && (
                   <ContractualObligationsTab
                     data={data?.data.contractualObligations}
                   />
-                )}
-                {activeTab === "Environmental Compliance" && (
+                )} */}
+                {/* {activeTab === "Environmental Compliance" && (
                   <EnvironmentalComplianceTab
                     data={data?.data?.environmentalCompliance}
                   />
-                )}
+                )} */}
                 {activeTab === "Insurance Coverage" && (
                   <InsuranceCoverageTab data={data?.data.insuranceCoverage} />
                 )}
-                {activeTab === "Supply Chain Information" && (
+                {/* {activeTab === "Supply Chain Information" && (
                   <SupplyChainTab data={data?.data.supplyChainInformation} />
-                )}
+                )} */}
                 {/* {activeTab === "References/Reputation" && (
                   <ReferencesTab data={data?.data.referencesReputation} />
                 )} */}

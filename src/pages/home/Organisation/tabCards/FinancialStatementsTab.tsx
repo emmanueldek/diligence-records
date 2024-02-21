@@ -30,15 +30,15 @@ const FinancialStatementsTab: React.FC<TProps> = ({ data }) => {
 
   const contactData: TTableOrgFinancialStatements[] = data
     ? data.map((el) => {
-        el.fsDocuments.forEach((doc: any, i: number) => {
+        el.fsDocuments.forEach((doc: any) => {
           if (typeof doc == "string") {
             convertedUrl = doc;
           } else if (typeof doc == "object") {
-            doc.forEach((doc2: any, i: number) => {
+            doc.forEach((doc2: any) => {
               if (typeof doc2 == "string") {
                 convertedUrl = doc2;
               } else if (typeof doc2 == "object") {
-                doc2.forEach((doc3: any, i: number) => {
+                doc2.forEach((doc3: any) => {
                   convertedUrl = doc3;
                 });
               }

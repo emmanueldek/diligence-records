@@ -51,7 +51,7 @@ export type TOrgFinancialStatements = {
   audFinancials: string;
   audBy: string;
   source: string;
-  fsDocuments: string;
+  fsDocuments: any;
 };
 
 export type TOrgCreditHistory = {

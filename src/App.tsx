@@ -8,6 +8,8 @@ import {
 import { AuthLayout, PageLayout, WorkspaceLayout } from "./layout";
 import { ErrorPage } from "./pages";
 import DocumentLayout from "./layout/document";
+import Home from "./pages/viewDoc/Home";
+
 // import Home from "./pages/viewDoc/Home";
 
 function App() {
@@ -28,11 +30,11 @@ function App() {
           return (
             <>
               <Route key={index} path={path} element={element} />;
-              {/* <Route
-                path="/view-document"
+              <Route
+                path="/view-document/:documentUrl"
                 element={<Home />}
                 key="/view-document/:documentUrl"
-              /> */}
+              />
             </>
           );
         })}

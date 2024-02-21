@@ -1,29 +1,17 @@
-import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import React from "react";
+import { Worker, Viewer } from "@react-pdf-viewer/core";
+import "@react-pdf-viewer/core/lib/styles/index.css";
 
-// Create styles
-const styles = StyleSheet.create({
-  page: {
-    flexDirection: "row",
-    backgroundColor: "#E4E4E4",
-  },
-  section: {
-    margin: 10,
-    padding: 10,
-    flexGrow: 1,
-  },
-});
+type ViewerProps = {
+  fileUrl: string;
+};
 
-// Create Document Component
-const Home = () => (
-  <Document>
-    <Page size="A4" style={styles.page}>
-      <View style={styles.section}>
-        <Text>Section #1</Text>
-      </View>
-      <View style={styles.section}>
-        <Text>Section #2</Text>
-      </View>
-    </Page>
-  </Document>
-);
+const Home: React.FC<ViewerProps> = ({ fileUrl }) => {
+  return (
+    <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+      <Viewer fileUrl={fileUrl} />
+    </Worker>
+  );
+};
+
 export default Home;

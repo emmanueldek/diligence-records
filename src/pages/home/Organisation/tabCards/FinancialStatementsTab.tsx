@@ -1,3 +1,5 @@
+"use client";
+
 import {
   TColumn,
   TOrgFinancialStatements,
@@ -5,6 +7,9 @@ import {
 } from "@/types/organizationTypes";
 import AvailableDocuments from "./AvailableDocuments";
 import { GoPaperclip } from "react-icons/go";
+import React, { useState } from "react";
+import Home from "@/pages/viewDoc/Home";
+import { HiArrowNarrowLeft } from "react-icons/hi";
 
 type TProps = {
   data?: TOrgFinancialStatements[];
@@ -19,67 +24,103 @@ const columns: TColumn[] = [
 ];
 
 const FinancialStatementsTab: React.FC<TProps> = ({ data }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  let convertedUrl = "";
+
   const contactData: TTableOrgFinancialStatements[] = data
-    ? data.map((el) => ({
-        year: el?.year,
-        audFinancials: (
-          <div className="w-[300px] overflow-hidden truncate">
-            <a href={el.fsDocuments} target="_blank" className=" text-blue-600">
-              {el?.fsDocuments}
-            </a>
-            {/* <p className="text-blue-600 cursor-pointer" onClick={handlePreview}>
-              {el?.fsDocuments}
-            </p> */}
-            {/* <iframe src={el.fsDocuments} allowFullScreen>
-              {el.fsDocuments}
-            </iframe> */}
-          </div>
-        ),
-        audBy: el?.audBy,
-        source: el?.source,
-        fsDocuments: (
-          <div>
-            <GoPaperclip />
-          </div>
-        ),
-      }))
+    ? data.map((el) => {
+        el.fsDocuments.forEach((doc: any, i: number) => {
+          if (typeof doc == "string") {
+            convertedUrl = doc;
+          } else if (typeof doc == "object") {
+            doc.forEach((doc2: any, i: number) => {
+              if (typeof doc2 == "string") {
+                convertedUrl = doc2;
+              } else if (typeof doc2 == "object") {
+                doc2.forEach((doc3: any, i: number) => {
+                  convertedUrl = doc3;
+                });
+              }
+            });
+          }
+        });
+        console.log(convertedUrl);
+        // console.log(convertedUrl);
+        return {
+          year: el?.year,
+          audFinancials: (
+            <div className="w-[300px] overflow-hidden truncate">
+              <a
+                href="#"
+                onClick={() => setCurrentPage(2)}
+                rel="noopener noreferrer"
+                className=" text-blue-600"
+              >
+                {el?.fsDocuments}
+              </a>
+            </div>
+          ),
+          audBy: el?.audBy,
+          source: el?.source,
+          fsDocuments: (
+            <div>
+              <GoPaperclip />
+            </div>
+          ),
+        };
+      })
     : [];
 
   return (
     <div className="w-full">
-      <div className="w-full scrollbar-hide overflow-x-auto">
-        <table className="w-full text-sm text-left text-gray-500 border-collapse border-spacing-0">
-          <thead className="text-xs text-grey-400 bg-grey-50">
-            <tr className=" h-[45px] px-7 text-left">
-              {columns &&
-                columns.map((head, i) => (
-                  <th key={i} className="pl-4">
-                    {head.header}{" "}
-                  </th>
-                ))}
-            </tr>
-          </thead>
-
-          <tbody className="w-full">
-            {contactData &&
-              contactData.map((row, i) => (
-                <tr
-                  key={i}
-                  className="h-[50px] border-b-[1px] text-sm text-[#151515] font-[500]"
-                >
-                  {columns?.map((col: TColumn, i) => (
-                    <td key={i} className="pl-4 font-light text-textGrey">
-                      {row[col.field as keyof TTableOrgFinancialStatements]}
-                    </td>
-                  ))}
+      <p
+        onClick={() => setCurrentPage(1)}
+        className="flex items-center gap-1 cursor-pointer text-[0.9rem] mb-3"
+      >
+        {" "}
+        <HiArrowNarrowLeft />
+        Go Back
+      </p>
+      {currentPage === 1 ? (
+        <>
+          <div className="w-full scrollbar-hide overflow-x-auto">
+            <table className="w-full text-sm text-left text-gray-500 border-collapse border-spacing-0">
+              <thead className="text-xs text-grey-400 bg-grey-50">
+                <tr className=" h-[45px] px-7 text-left">
+                  {columns &&
+                    columns.map((head, i) => (
+                      <th key={i} className="pl-4">
+                        {head.header}{" "}
+                      </th>
+                    ))}
                 </tr>
-              ))}
-          </tbody>
-        </table>
-      </div>
-      <div className="mt-6 w-full">
-        <AvailableDocuments data={data} />
-      </div>
+              </thead>
+
+              <tbody className="w-full">
+                {contactData &&
+                  contactData.map((row, i) => (
+                    <tr
+                      key={i}
+                      className="h-[50px] border-b-[1px] text-sm text-[#151515] font-[500]"
+                    >
+                      {columns?.map((col: TColumn, i) => (
+                        <td key={i} className="pl-4 font-light text-textGrey">
+                          {row[col.field as keyof TTableOrgFinancialStatements]}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-6 w-full">
+            <AvailableDocuments data={data} />
+          </div>
+        </>
+      ) : (
+        <Home fileUrl={convertedUrl} />
+      )}
     </div>
   );
 };

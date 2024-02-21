@@ -53,7 +53,7 @@ const Login: React.FC = () => {
   };
 
   return (
-     <Card className="w-full bg-white rounded-md p-6">
+    <Card className="w-full bg-white rounded-md p-6">
       <div className="flex justify-center items-center mb-4">
         <RecordsLetterLogo />
       </div>
@@ -61,7 +61,6 @@ const Login: React.FC = () => {
         <h1 className="font-[700] text-2xl lg:text-4xl leading-[38px]">
           Log in
         </h1>
-        
       </div>
       <div className="w-full mt-8">
         <form action="" onSubmit={handleSubmit} className="">

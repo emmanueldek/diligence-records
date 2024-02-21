@@ -1,3 +1,12 @@
+@import "../../../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-dropdowns/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-navigations/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
+@import "../../../node_modules/@syncfusion/ej2-pdfviewer/styles/material.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -56,8 +65,8 @@ body {
   overflow: hidden;
 }
 
-.auth-hero{
-    background: url("https://res.cloudinary.com/dnir0cslk/image/upload/v1706152849/recordsbg_eubf1m.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;  
+.auth-hero {
+  background: url("https://res.cloudinary.com/dnir0cslk/image/upload/v1706152849/recordsbg_eubf1m.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }

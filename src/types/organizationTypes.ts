@@ -49,10 +49,11 @@ export type TOrgManagement = {
 };
 
 export type TOrgFinancialStatements = {
-  year: any;
-  audBy: any;
-  source: any;
-  fsDocuments: any;
+  year?: any;
+  audBy?: any;
+  source?: any;
+  audFinancials?: any;
+  fsDocuments?: any;
 };
 
 export type TOrgCreditHistory = {

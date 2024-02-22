@@ -24,7 +24,6 @@ const columns: TColumn[] = [
 
 const FinancialStatementsTab: React.FC<TProps> = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [clickedUrl, setClickedUrl] = useState<string>("");
 
   let convertedUrl = "";
   let Urls: any = [];
@@ -118,7 +117,7 @@ const FinancialStatementsTab: React.FC<TProps> = ({ data }) => {
           </div>
         </>
       ) : (
-        <Home fileUrl={clickedUrl} />
+        <Home fileUrl={""} />
       )}
     </div>
   );

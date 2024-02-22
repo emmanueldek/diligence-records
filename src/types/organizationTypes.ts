@@ -50,7 +50,6 @@ export type TOrgManagement = {
 
 export type TOrgFinancialStatements = {
   year: string;
-  audFinancials: string;
   audBy: string;
   source: string;
   fsDocuments: any;

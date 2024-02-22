@@ -172,7 +172,7 @@ function OrganisationProfile() {
                 {activeTab === "Tax Compliance" && (
                   <TaxComplianceTab data={data?.data?.taxCompliance} />
                 )}
-                {activeTab === "Legal/Regulatory" && (
+                {activeTab === "Legal" && (
                   <LegalRegulatoryTab data={data?.data.legalRegulatory} />
                 )}
                 {/* {activeTab === "Credit Reports" && <CreditReportTab data={data?.data.creditHistory} />} */}

@@ -8,6 +8,7 @@ import { GoPaperclip } from "react-icons/go";
 import React, { useState } from "react";
 import Home from "@/pages/viewDoc/Home";
 import { HiArrowNarrowLeft } from "react-icons/hi";
+import { FaDownload } from "react-icons/fa6";
 
 type TProps = {
   data?: TOrgFinancialStatements[];
@@ -15,19 +16,21 @@ type TProps = {
 
 const columns: TColumn[] = [
   { field: "year", header: "Year" },
-  { field: "audFinancials", header: "Audited Financials" },
+  // { field: "audFinancials", header: "Audited Financials" },
   { field: "audBy", header: "Audited by" },
   { field: "source", header: "Source" },
-  { field: "fsDocuments", header: "Attachment" },
+  { field: "audFinancials", header: "Attachment" },
 ];
 
 const FinancialStatementsTab: React.FC<TProps> = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [clickedUrl, setClickedUrl] = useState<string>("");
 
   let convertedUrl = "";
+  let Urls: any = [];
 
   const contactData: TTableOrgFinancialStatements[] = data
-    ? data.map((el) => {
+    ? data.map((el, i) => {
         el.fsDocuments.forEach((doc: any) => {
           if (typeof doc == "string") {
             convertedUrl = doc;
@@ -43,24 +46,32 @@ const FinancialStatementsTab: React.FC<TProps> = ({ data }) => {
             });
           }
         });
-        console.log(convertedUrl);
-        // console.log(convertedUrl);
+        Urls.push(convertedUrl);
         return {
           year: el?.year,
           audFinancials: (
             <div className="w-[300px] overflow-hidden truncate">
-              <a
-                href="#"
-                onClick={() => setCurrentPage(2)}
-                rel="noopener noreferrer"
+              {/* <button
+                onClick={() => {
+                  setClickedUrl(Urls[i]);
+                  setCurrentPage(2);
+                }}
+                // rel="noopener noreferrer"
                 className=" text-blue-600"
               >
-                {el?.fsDocuments}
+                {Urls[i]}
+              </button> */}
+              <a href={Urls[i]} target="_blank">
+                <FaDownload />
               </a>
             </div>
           ),
           audBy: el?.audBy,
-          source: el?.source,
+          source: (
+            <a href={el?.source} target="_blank" className="text-blue-600">
+              {el?.source}{" "}
+            </a>
+          ),
           fsDocuments: (
             <div>
               <GoPaperclip />
@@ -117,7 +128,7 @@ const FinancialStatementsTab: React.FC<TProps> = ({ data }) => {
           </div>
         </>
       ) : (
-        <Home fileUrl={convertedUrl} />
+        <Home fileUrl={clickedUrl} />
       )}
     </div>
   );

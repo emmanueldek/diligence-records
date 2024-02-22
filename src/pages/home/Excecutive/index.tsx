@@ -93,7 +93,7 @@ const ExecutivePage = () => {
     },
     {
       id: 5,
-      name: "Legal/Regulatory",
+      name: "Legal",
     },
     {
       id: 6,

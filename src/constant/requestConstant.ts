@@ -46,7 +46,7 @@ export const orgTab = [
   },
   {
     id: 6,
-    name: "Legal/Regulatory",
+    name: "Legal",
   },
   // {
   //   id: 7,

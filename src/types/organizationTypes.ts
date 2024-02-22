@@ -38,6 +38,8 @@ export type TOrgProfile = {
   location: string;
   website: string;
   organizationLogo: string;
+  cacNumber: string;
+  cacDocument: string;
 };
 
 export type TOrgManagement = {
@@ -161,7 +163,7 @@ export type TTableOrgFinancialStatements = {
   year: string;
   audFinancials: JSX.Element;
   audBy: string;
-  source: string;
+  source: JSX.Element;
   fsDocuments: JSX.Element;
 };
 

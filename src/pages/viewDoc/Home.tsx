@@ -63,61 +63,76 @@
 
 // export default Home;
 
+// import React from "react";
+// import "../../assets/css/index.css";
+// import {
+//   PdfViewerComponent,
+//   Toolbar,
+//   Magnification,
+//   Navigation,
+//   LinkAnnotation,
+//   BookmarkView,
+//   ThumbnailView,
+//   Print,
+//   TextSelection,
+//   Annotation,
+//   TextSearch,
+//   FormFields,
+//   FormDesigner,
+//   Inject,
+// } from "@syncfusion/ej2-react-pdfviewer";
+
+// type ViewerProps = {
+//   fileUrl?: string;
+// };
+
+// const Home: React.FC<ViewerProps> = ({ fileUrl }) => {
+//   return (
+//     <div>
+//       {" "}
+//       <div className="control-section">
+//         {/* Render the PDF Viewer */}
+//         <PdfViewerComponent
+//           id="container"
+//           documentPath={
+//             "https://cdn.shopify.com/s/files/1/2081/8163/files/001-HIDE-AND-SEEK-Free-Childrens-Book-By-Monkey-Pen.pdf?v=1589846897"
+//           }
+//           resourceUrl="https://cdn.syncfusion.com/ej2/23.1.40/dist/ej2-pdfviewer-lib"
+//           // serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer"
+//           style={{ height: "640px" }}
+//         >
+//           <Inject
+//             services={[
+//               Toolbar,
+//               Magnification,
+//               Navigation,
+//               Annotation,
+//               LinkAnnotation,
+//               BookmarkView,
+//               ThumbnailView,
+//               Print,
+//               TextSelection,
+//               TextSearch,
+//               FormFields,
+//               FormDesigner,
+//             ]}
+//           />
+//         </PdfViewerComponent>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Home;
+
 import React from "react";
-import "../../assets/css/index.css";
-import {
-  PdfViewerComponent,
-  Toolbar,
-  Magnification,
-  Navigation,
-  LinkAnnotation,
-  BookmarkView,
-  ThumbnailView,
-  Print,
-  TextSelection,
-  Annotation,
-  TextSearch,
-  FormFields,
-  FormDesigner,
-  Inject,
-} from "@syncfusion/ej2-react-pdfviewer";
 
 type ViewerProps = {
   fileUrl?: string;
 };
 
 const Home: React.FC<ViewerProps> = ({ fileUrl }) => {
-  return (
-    <div>
-      {" "}
-      <div className="control-section">
-        {/* Render the PDF Viewer */}
-        <PdfViewerComponent
-          id="container"
-          documentPath={fileUrl}
-          resourceUrl="https://cdn.syncfusion.com/ej2/23.1.40/dist/ej2-pdfviewer-lib"
-          style={{ height: "640px" }}
-        >
-          <Inject
-            services={[
-              Toolbar,
-              Magnification,
-              Navigation,
-              Annotation,
-              LinkAnnotation,
-              BookmarkView,
-              ThumbnailView,
-              Print,
-              TextSelection,
-              TextSearch,
-              FormFields,
-              FormDesigner,
-            ]}
-          />
-        </PdfViewerComponent>
-      </div>
-    </div>
-  );
+  return <iframe src={fileUrl} width="100%" height="100%"></iframe>;
 };
 
 export default Home;

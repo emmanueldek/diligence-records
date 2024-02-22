@@ -1,6 +1,5 @@
 import { capitalizeWords } from "@/libs/CapitalizeWords";
 import { TOrgProfile } from "@/types/organizationTypes";
-import AvailableDocuments from "./AvailableDocuments";
 import { PrimaryBtn } from "@/components";
 
 type TProps = {

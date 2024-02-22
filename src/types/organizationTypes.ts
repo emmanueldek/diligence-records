@@ -49,10 +49,10 @@ export type TOrgManagement = {
 };
 
 export type TOrgFinancialStatements = {
-  year: string;
-  audBy: JSX.Element;
-  source: string;
-  fsDocuments: JSX.Element;
+  year: any;
+  audBy: any;
+  source: any;
+  fsDocuments: any;
 };
 
 export type TOrgCreditHistory = {

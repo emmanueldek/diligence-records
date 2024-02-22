@@ -51,16 +51,6 @@ const FinancialStatementsTab: React.FC<TProps> = ({ data }) => {
           year: el?.year,
           audFinancials: (
             <div className="w-[300px] overflow-hidden truncate">
-              {/* <button
-                onClick={() => {
-                  setClickedUrl(Urls[i]);
-                  setCurrentPage(2);
-                }}
-                // rel="noopener noreferrer"
-                className=" text-blue-600"
-              >
-                {Urls[i]}
-              </button> */}
               <a href={Urls[i]} target="_blank">
                 <FaDownload />
               </a>

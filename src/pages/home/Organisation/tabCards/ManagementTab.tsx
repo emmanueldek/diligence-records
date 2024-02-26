@@ -1,5 +1,6 @@
 import { TOrgManagement } from "@/types/organizationTypes";
 import dangote from "@/assets/images/dangote.jpeg";
+import useManagementView from "@/store/useManagementView";
 
 type TProps = {
   data?: TOrgManagement[];
@@ -12,7 +13,7 @@ type TProps = {
 // ];
 
 const ManagementTab: React.FC<TProps> = ({ data }) => {
-  console.log(data);
+  const { setIsShow, setManagementData } = useManagementView();
   return (
     <>
       <div className="w-full scrollbar-hide overflow-x-auto">
@@ -50,8 +51,12 @@ const ManagementTab: React.FC<TProps> = ({ data }) => {
           data.map((data: any, index: number) => {
             return (
               <div
-                className="relative h-[230px] flex items-start justify-center"
+                className="relative h-[230px] flex items-start justify-center cursor-pointer"
                 key={index}
+                onClick={() => {
+                  setIsShow(true);
+                  setManagementData(data);
+                }}
               >
                 <img
                   src={data.imageUrl ? data.imageUrl : dangote}

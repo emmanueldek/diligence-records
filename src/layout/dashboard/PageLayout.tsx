@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { NavBar, SideBar } from "@/components";
 import SearchResult from "@/pages/home/SearchResult";
+import ViewManagement from "@/components/modal/ViewManagement";
 
 function PageLayout() {
   const [openNav, setOpenNav] = useState(false);
@@ -35,6 +36,7 @@ function PageLayout() {
           {searchQuery ? <SearchResult /> : <Outlet />}
         </div>
       </div>
+      <ViewManagement />
     </div>
   );
 }

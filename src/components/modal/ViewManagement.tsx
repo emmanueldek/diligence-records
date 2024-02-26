@@ -1,6 +1,6 @@
 import useManagementView from "@/store/useManagementView";
 import { AnimatePresence, motion } from "framer-motion";
-import close from "../../assets/icons/Close.svg";
+import close from "../../assets/icons/close.svg";
 
 const ViewManagement = () => {
   const { managementData, isShow, setIsShow } = useManagementView();

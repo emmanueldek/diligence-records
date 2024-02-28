@@ -28,6 +28,10 @@ export const passwordSchema = yup
     speccialCharcterRegex,
     "Password must contain at least one special character.",
   );
+const confirmPasswordSchema = yup
+  .string()
+  .oneOf([yup.ref("password")], "Passwords must match")
+  .required("Confirm Password is required");
 
 export const stringSchema = yup.string().required("This field is required");
 
@@ -84,6 +88,11 @@ export const newWorkspaceValidationSchema = yup.object().shape({
   state: stringSchema,
   website: stringSchema,
 });
+
+export const createPasswordSchema = yup.object().shape({
+  password: passwordSchema,
+  confirmPassword: confirmPasswordSchema,
+});
 export const newRequestSchema = yup.object().shape({
   // profileType: stringSchema,
   organizationName: stringSchema,
@@ -121,6 +130,7 @@ export const updateProfileValidationSchema = yup.object().shape({
 // types
 export type TRegistration = yup.InferType<typeof regValidationSchema>;
 export type TLogin = yup.InferType<typeof loginValidationSchema>;
+export type TCREATEPASSWORD = yup.InferType<typeof createPasswordSchema>;
 export type TForgotPwd = yup.InferType<typeof forgotPwdValidationSchema>;
 export type TPwdReset = yup.InferType<typeof pwdResetSchema>;
 export type TNewWorkspace = yup.InferType<typeof newWorkspaceValidationSchema>;

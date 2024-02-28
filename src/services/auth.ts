@@ -94,3 +94,15 @@ export const updateProfile = async (payload: TUpdateProfile) => {
     throw handleRecordsApiError(error);
   }
 };
+
+export const createUserPassword = async (payload: TUpdateProfile) => {
+  try {
+    const result = await RecordsOrgApi.post(
+      RECORDS_URLS.AUTH.CREATE_USER_PASSWORD,
+      payload,
+    );
+    return result;
+  } catch (error) {
+    throw handleRecordsApiError(error);
+  }
+};

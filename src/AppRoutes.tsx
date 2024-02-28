@@ -10,7 +10,6 @@ import {
 } from "./pages";
 import Login from "./pages/auth/Login";
 import { ResetVerify, SignUpVerify } from "./pages/auth/MailVerification";
-import Signup from "./pages/auth/Signup";
 import ForgetPassword from "./pages/auth/ForgetPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 import RequestDetails from "./pages/request/requestDetails";
@@ -20,6 +19,7 @@ import ExecutivePage from "./pages/home/Excecutive";
 import RequestRecord from "./pages/home/Organisation/RequestRecord";
 import RequestRecordExe from "./pages/home/Excecutive/RequestRecordExe";
 import TermsOfUse from "./pages/TermsOfUse";
+import CreatePassword from "./pages/auth/CreatePassword";
 
 const { AUTH_PATHS, APP_PATHS, SPACE_PATHS, DOCUMENT_PATHS } = PATHNAMES;
 
@@ -82,10 +82,6 @@ export const appRoutes = [
 
 export const authRoutes = [
   {
-    path: AUTH_PATHS.SIGNUP,
-    element: <Signup />,
-  },
-  {
     path: AUTH_PATHS.LOGIN,
     element: <Login />,
   },
@@ -104,6 +100,10 @@ export const authRoutes = [
   {
     path: AUTH_PATHS.RESET_PASSWORD,
     element: <ResetPassword />,
+  },
+  {
+    path: AUTH_PATHS.CREATE_NEWPASSWORD,
+    element: <CreatePassword />,
   },
 ];
 

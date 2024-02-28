@@ -16,6 +16,7 @@ export const RECORDS_URLS = {
     PASSWORD_RESET: "auth/partner/reset-password",
     ME: "auth/partner/me",
     PROFILE_UPDATE: "auth/partner/me/update",
+    CREATE_USER_PASSWORD: "",
   },
   HOME: {
     FULL_SEARCH: "home/full-search",

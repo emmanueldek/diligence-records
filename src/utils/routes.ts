@@ -6,6 +6,7 @@ export const PATHNAMES = {
     RESET_VERIFY: "verify_reset",
     FORGOT_PASSWORD: "forgot_password",
     RESET_PASSWORD: "reset-password/:id",
+    CREATE_NEWPASSWORD: "create-new-password/:id",
   },
 
   APP_PATHS: {

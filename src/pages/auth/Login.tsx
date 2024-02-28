@@ -106,15 +106,6 @@ const Login: React.FC = () => {
             className="w-full h-10"
           />
         </form>
-        <p className="mt-4 font-light text-grey-300">
-          Don’t have an account?{" "}
-          <Link
-            to="/auth/signup"
-            className="font-[700] text-green-500 hover:underline"
-          >
-            Register here
-          </Link>
-        </p>
       </div>
     </Card>
   );

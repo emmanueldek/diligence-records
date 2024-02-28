@@ -19,7 +19,6 @@ import ExecutivePage from "./pages/home/Excecutive";
 import RequestRecord from "./pages/home/Organisation/RequestRecord";
 import RequestRecordExe from "./pages/home/Excecutive/RequestRecordExe";
 import TermsOfUse from "./pages/TermsOfUse";
-import CreatePassword from "./pages/auth/CreatePassword";
 
 const { AUTH_PATHS, APP_PATHS, SPACE_PATHS, DOCUMENT_PATHS } = PATHNAMES;
 
@@ -100,10 +99,6 @@ export const authRoutes = [
   {
     path: AUTH_PATHS.RESET_PASSWORD,
     element: <ResetPassword />,
-  },
-  {
-    path: AUTH_PATHS.CREATE_NEWPASSWORD,
-    element: <CreatePassword />,
   },
 ];
 

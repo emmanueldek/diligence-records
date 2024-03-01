@@ -20,7 +20,7 @@ const AvailableDocuments: React.FC<TProps> = ({ data }) => {
               className="w-full sm:w-[190px] md:w-[250px]"
             >
               <div className="w-full h-[160px] bg-grey-50 rounded-md overflow-hidden group">
-                <a href={doc.fsDocuments}>
+                <a href={doc.fsDocuments} target="_blank">
                   <div className="hidden h-full transition-all group-hover:flex justify-center items-center group-hover:bg-grey-200">
                     <PrimaryBtn text="open" />
                   </div>
@@ -29,8 +29,8 @@ const AvailableDocuments: React.FC<TProps> = ({ data }) => {
 
               {/* </a> */}
 
-              <h4 className="font-bold leading-[20px] mt-3 mb-1 overflow-auto truncate">
-                {doc.fsDocuments}
+              <h4 className="font-bold leading-[20px] mt-3 mb-1 overflow-auto truncate text-center">
+                {doc.year ? doc.year : doc.fsDocuments}
               </h4>
               <p className="font-light text-grey-400 text-sm leading-[20px]">
                 {/* {date} */}

@@ -24,6 +24,7 @@ const columns: TColumn[] = [
 
 const FinancialStatementsTab: React.FC<TProps> = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(1);
+  console.log(data);
 
   let convertedUrl = "";
   let Urls: any = [];

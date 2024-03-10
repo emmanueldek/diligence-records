@@ -9,6 +9,7 @@ import React, { useState } from "react";
 import Home from "@/pages/viewDoc/Home";
 import { HiArrowNarrowLeft } from "react-icons/hi";
 import { FaDownload } from "react-icons/fa6";
+import { RECORDS_URLS } from "@/utils/backendURLs";
 
 type TProps = {
   data?: TOrgFinancialStatements[];
@@ -24,10 +25,35 @@ const columns: TColumn[] = [
 
 const FinancialStatementsTab: React.FC<TProps> = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const userAuth = localStorage.getItem("authToken") as string;
+
   console.log(data);
 
   let convertedUrl = "";
   let Urls: any = [];
+
+  console.log(data);
+
+  const downloadPdf = async (fileName: string | undefined) => {
+    try {
+      const response = await fetch(
+        `${RECORDS_URLS.BASE_URL}${RECORDS_URLS.RETRIEVEPDF}?fileName=${fileName}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/pdf",
+            Authorization: `Bearer ${userAuth}`,
+          },
+        },
+      );
+
+      const data = await response.blob();
+      const hrefUrl = URL.createObjectURL(data);
+      window.open(hrefUrl, "_blank");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const contactData: TTableOrgFinancialStatements[] = data
     ? data.map((el, i) => {
@@ -51,9 +77,9 @@ const FinancialStatementsTab: React.FC<TProps> = ({ data }) => {
           year: el?.year,
           audFinancials: (
             <div className="w-[300px] overflow-hidden truncate">
-              <a href={Urls[i]} target="_blank">
+              <button onClick={() => downloadPdf(Urls[i])}>
                 <FaDownload />
-              </a>
+              </button>
             </div>
           ),
           audBy: el?.audBy,
@@ -114,7 +140,7 @@ const FinancialStatementsTab: React.FC<TProps> = ({ data }) => {
             </table>
           </div>
           <div className="mt-6 w-full">
-            <AvailableDocuments data={data} />
+            <AvailableDocuments data={data} type="pdf" />
           </div>
         </>
       ) : (

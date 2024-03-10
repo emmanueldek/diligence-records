@@ -37,6 +37,7 @@ export const RECORDS_URLS = {
     SUGGESTION: "request/partner/suggestion/create",
     ADD_RECORD: "request/partner/add-record",
   },
+  RETRIEVEPDF: "/upload/retrieve-pdf",
   WORKSPACE: {
     CREATE: "workspace/partner/create",
     GET_ALL_MEMBERS: "workspace/partner/members",

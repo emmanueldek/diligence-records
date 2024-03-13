@@ -6,10 +6,10 @@ type TProps = {
 };
 
 const columns: TColumn[] = [
-  { field: "type", header: "Type" },
-  { field: "coverageAmount", header: "Coverage Amount" },
-  { field: "coverageStatus", header: "Coverage Status" },
-  { field: "expiryDate", header: "Expiry Date" },
+  { field: "type", header: "Coverage Type" },
+  { field: "coverageAmount", header: "Insurer" },
+  { field: "coverageStatus", header: "Insurance Status" },
+  // { field: "expiryDate", header: "Expiry Date" },
 ];
 
 const InsuranceCoverageTab: React.FC<TProps> = ({ data }) => {

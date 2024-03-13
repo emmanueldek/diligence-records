@@ -68,8 +68,8 @@ const TaxComplianceTab: React.FC<TProps> = ({ data }) => {
 
                   {/* </a> */}
 
-                  <h4 className="font-bold leading-[20px] mt-3 mb-1 overflow-auto truncate">
-                    {doc.tcDocuments}
+                  <h4 className="font-bold leading-[20px] mt-3 mb-1 overflow-auto truncate text-center">
+                    {doc.year}
                   </h4>
                   <p className="font-light text-grey-400 text-sm leading-[20px]">
                     {/* {date} */}

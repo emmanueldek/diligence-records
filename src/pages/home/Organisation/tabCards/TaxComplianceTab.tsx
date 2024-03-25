@@ -1,6 +1,7 @@
 import { TColumn, TOrgTaxCompliance } from "@/types/organizationTypes";
 
 import { PrimaryBtn } from "@/components";
+import { RECORDS_URLS } from "@/utils/backendURLs";
 
 type TProps = {
   data?: TOrgTaxCompliance[];
@@ -13,6 +14,28 @@ const columns: TColumn[] = [
 ];
 
 const TaxComplianceTab: React.FC<TProps> = ({ data }) => {
+  const userAuth = localStorage.getItem("authToken") as string;
+
+  const downloadPdf = async (fileName: string | undefined) => {
+    try {
+      const response = await fetch(
+        `${RECORDS_URLS.BASE_URL}${RECORDS_URLS.RETRIEVEPDF}?fileName=${fileName}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/pdf",
+            Authorization: `Bearer ${userAuth}`,
+          },
+        },
+      );
+
+      const data = await response.blob();
+      const hrefUrl = URL.createObjectURL(data);
+      window.open(hrefUrl, "_blank");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="w-full">
       <div className="w-full scrollbar-hide overflow-x-auto">
@@ -59,11 +82,15 @@ const TaxComplianceTab: React.FC<TProps> = ({ data }) => {
                   className="w-full sm:w-[190px] md:w-[250px]"
                 >
                   <div className="w-full h-[160px] bg-grey-50 rounded-md overflow-hidden group">
-                    <a href={doc.tcDocuments}>
+                    <button
+                      onClick={() => {
+                        downloadPdf(doc.tcDocuments);
+                      }}
+                    >
                       <div className="hidden h-full transition-all group-hover:flex justify-center items-center group-hover:bg-grey-200">
                         <PrimaryBtn text="open" />
                       </div>
-                    </a>
+                    </button>
                   </div>
 
                   {/* </a> */}

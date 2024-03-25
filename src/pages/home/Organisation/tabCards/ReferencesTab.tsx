@@ -5,7 +5,6 @@ const columns: any[] = [
   { field: "name", header: "Name" },
   { field: "referenceDate", header: "Reference Date" },
   { field: "rrDocuments", header: "" },
-  // { field: "expiryDate", header: "Expiry Date" },
 ];
 function ReferencesTab({ data }: any) {
   const userAuth = localStorage.getItem("authToken") as string;

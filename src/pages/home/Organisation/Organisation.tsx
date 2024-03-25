@@ -14,6 +14,7 @@ import {
   LegalRegulatoryTab,
   InsuranceCoverageTab,
   OwnershipStructureTab,
+  ReferencesTab,
 } from "./tabCards";
 
 import SuggestionForm from "./SuggestionForm";
@@ -192,9 +193,9 @@ function OrganisationProfile() {
                 {/* {activeTab === "Supply Chain Information" && (
                   <SupplyChainTab data={data?.data.supplyChainInformation} />
                 )} */}
-                {/* {activeTab === "References/Reputation" && (
+                {activeTab === "References" && (
                   <ReferencesTab data={data?.data.referencesReputation} />
-                )} */}
+                )}
                 {activeTab === "Ownership Structure" && (
                   <OwnershipStructureTab data={data?.data.ownershipStructure} />
                 )}

@@ -4,17 +4,20 @@ import { ImReply } from "react-icons/im";
 import { useQuery } from "@tanstack/react-query";
 import { getAllNews } from "@/services/home";
 import { useState } from "react";
-import { TArticle } from "@/types/homeTypes";
-import { timeAgo } from "@/libs/TimeAgo";
+// import { TArticle } from "@/types/homeTypes";
 import NoState from "@/components/nostate";
 
 type TProps = {
-  data?: TArticle;
+  data?: any;
 };
 
 const NewsCard = ({ data }: TProps) => {
   return (
-    <div className="cursor-pointer flex flex-col md:flex-row justify-start items-start py-4 border-b border-grey-50 last:border-0 w-[100%]">
+    <a
+      href={data?.url}
+      target="_blank"
+      className="cursor-pointer flex flex-col md:flex-row justify-start items-start py-4 border-b border-grey-50 last:border-0 w-[100%] hover:scale-95 transition-all ease-in-out duration-300"
+    >
       <div className="w-[200px] h-[150px] rounded-md overflow-hidden mr-4">
         <img
           className="w-full h-full object-cover"
@@ -44,15 +47,15 @@ const NewsCard = ({ data }: TProps) => {
 
         <div className="flex justify-start items-center text-sm space-x-4">
           <ImReply className=" rotate-[180deg]" />
-          <a href={data?.source.url} target="_blank">
-            {data?.source.name}
+          <a href={data?.url} target="_blank">
+            {data?.source.charAt(0).toUpperCase() + data?.source.slice(1)}
           </a>
-          <p className="mr-2 text-xs font-light text-grey-200">
+          {/* <p className="mr-2 text-xs font-light text-grey-200">
             {timeAgo(data?.publishedAt as string)}
-          </p>
+          </p> */}
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 
@@ -60,7 +63,7 @@ function RecentNews() {
   const [page] = useState(1);
   const { data } = useQuery(["getAllNews", page], () => getAllNews(page));
 
-  const newData = data?.data?.articles;
+  const newData = data?.data?.data?.data;
   return (
     <Wrapper className="bg-white">
       <h1 className="text-2xl font-semibold">Recent News</h1>

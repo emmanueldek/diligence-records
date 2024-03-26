@@ -51,6 +51,17 @@ export const getAllWatchList = async () => {
   }
 };
 
+export const getShareHolderDetails = async ({ id }: any) => {
+  try {
+    const { data } = await RecordsOrgApi.get(
+      `${RECORDS_URLS.SHAREHOLDER.GETSHAREHOLDER}?keyword=${id}`,
+    );
+    return data;
+  } catch (error) {
+    throw handleRecordsApiError(error);
+  }
+};
+
 export const removeWaitlist = async (requestId: string) => {
   try {
     const { data } = await RecordsOrgApi.delete(

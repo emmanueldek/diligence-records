@@ -14,7 +14,8 @@ export type TArticle = {
 export type TNewsResponse = {
   message: string;
   data: {
-    totalArticles: number;
-    articles: TArticle[];
+    data: {
+      data: TArticle[];
+    };
   };
 };

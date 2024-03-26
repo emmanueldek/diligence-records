@@ -10,8 +10,6 @@ function WatchList() {
   const { data: waitList } = useQuery(["waitlist"], getAllWatchList);
   const newData = waitList?.data?.result;
 
-  console.log(newData);
-
   return (
     <Wrapper className="bg-white w-[100%]">
       {newData?.length === 0 ? (

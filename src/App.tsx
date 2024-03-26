@@ -9,6 +9,7 @@ import { AuthLayout, PageLayout, WorkspaceLayout } from "./layout";
 import { ErrorPage } from "./pages";
 import DocumentLayout from "./layout/document";
 import Home from "./pages/viewDoc/Home";
+import ShareHolders from "./pages/shareholders/ShareHolders";
 
 // import Home from "./pages/viewDoc/Home";
 
@@ -29,11 +30,15 @@ function App() {
 
           return (
             <>
-              <Route key={index} path={path} element={element} />;
+              <Route key={index} path={path} element={element} />
               <Route
                 path="/view-document/:documentUrl"
                 element={<Home />}
                 key="/view-document/:documentUrl"
+              />
+              <Route
+                path="/shareholders/:shareHolder"
+                element={<ShareHolders />}
               />
             </>
           );

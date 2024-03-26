@@ -56,4 +56,7 @@ export const RECORDS_URLS = {
     REMOVE_MULTIPLE: "waitlist",
   },
   UPLOAD: "upload/partner/files",
+  SHAREHOLDER: {
+    GETSHAREHOLDER: "home/confirm-ownership-structure",
+  },
 };

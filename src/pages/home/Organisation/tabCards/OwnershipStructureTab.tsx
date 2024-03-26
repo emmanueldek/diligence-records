@@ -1,8 +1,10 @@
+import useGetShareHolder from "@/store/useGetShareHolder";
 import { TColumn } from "@/types/executiveTypes";
 import {
   TOrgOwnershipStructure,
   TOrgShareHolders,
 } from "@/types/organizationTypes";
+import { Link } from "react-router-dom";
 
 type TProps = {
   data?: TOrgOwnershipStructure;
@@ -13,6 +15,20 @@ const OwnershipStructureTab: React.FC<TProps> = ({ data }) => {
     { field: "name", header: "Name" },
     { field: "percentage", header: "Percentage (%)" },
   ];
+
+  const slugify = (text: string) => {
+    return text
+      .toString()
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^\w-]+/g, "")
+      .replace(/--+/g, "-")
+      .replace(/^-+/, "")
+      .replace(/-+$/, "");
+  };
+
+  const { setShareHolder, setCurrentUrl } = useGetShareHolder();
+
   return (
     <div className="w-full scrollbar-hide overflow-x-auto">
       <div>
@@ -52,11 +68,37 @@ const OwnershipStructureTab: React.FC<TProps> = ({ data }) => {
                     key={i}
                     className="h-[40px] text-sm text-[#151515] font-[500]"
                   >
-                    {columns?.map((col: TColumn, i) => (
-                      <td key={i} className="pl-4 font-light text-textGrey">
-                        {row[col.field as keyof TOrgShareHolders]}
-                      </td>
-                    ))}
+                    {columns?.map((col: TColumn, i) => {
+                      return (
+                        <>
+                          {col.field === "name" ? (
+                            <td key={i} className="pl-4 font-light">
+                              <Link
+                                to={`/shareholders/${slugify(
+                                  row[col.field as keyof TOrgShareHolders],
+                                )}`}
+                                className="text-[#355db4] cursor-pointer w-fit"
+                                onClick={() => {
+                                  setShareHolder(
+                                    row[col.field as keyof TOrgShareHolders],
+                                  );
+                                  setCurrentUrl(window.location.href);
+                                }}
+                              >
+                                {row[col.field as keyof TOrgShareHolders]}
+                              </Link>
+                            </td>
+                          ) : (
+                            <td
+                              key={i}
+                              className="pl-4 font-light text-textGrey"
+                            >
+                              {row[col.field as keyof TOrgShareHolders]}
+                            </td>
+                          )}
+                        </>
+                      );
+                    })}
                   </tr>
                 ))}
             </tbody>

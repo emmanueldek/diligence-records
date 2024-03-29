@@ -1,14 +1,18 @@
 import { getShareHolderDetails } from "@/services/watchlistServices";
-import { useQuery } from "@tanstack/react-query";
-import { Link, useParams } from "react-router-dom";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import useGetShareHolder from "@/store/useGetShareHolder";
 import { TiArrowBack } from "react-icons/ti";
 import notFound from "@/assets/images/notFound.png";
 import { RingLoader } from "react-spinners";
+import { useEffect } from "react";
 
 const ShareHolders = () => {
   const shareHolderId = useParams().shareHolder;
   const { currentUrl } = useGetShareHolder();
+  const queryClient = useQueryClient();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   //   const unslugify = (str: string | undefined) => {
   //     return (
@@ -23,10 +27,40 @@ const ShareHolders = () => {
 
   //   const id = unslugify(shareHolderId);
 
-  const { data, isFetching } = useQuery(["shareholder"], () =>
+  const { data, isFetching } = useQuery(["shareholder", shareHolderId], () =>
     getShareHolderDetails({ id: shareHolderId }),
   );
   console.log(data);
+
+  useEffect(() => {
+    // Cleanup function to invalidate queries when component unmounts or before navigation
+    return () => {
+      queryClient.invalidateQueries(["shareholder", shareHolderId]);
+    };
+  }, [queryClient, shareHolderId]);
+
+  useEffect(() => {
+    if (data) {
+      if (
+        data?.data?.profile?.organizationName &&
+        !data?.data?.profile?.executiveName
+      ) {
+        navigate(`/home/organisation/${data.data._id}`);
+      } else if (data?.data?.profile?.executiveName) {
+        navigate(`/home/executive/${data.data._id}`);
+      }
+      // No else needed if no action is required for other cases
+    }
+  }, [data, navigate]);
+
+  useEffect(() => {
+    // This function will be called every time the location changes
+    const invalidateShareholderData = () => {
+      queryClient.invalidateQueries(["shareholder"]);
+    };
+
+    invalidateShareholderData();
+  }, [location, queryClient]);
   return (
     <div>
       {isFetching ? (

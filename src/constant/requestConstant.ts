@@ -56,10 +56,10 @@ export const orgTab = [
   //   id: 8,
   //   name: "Contractual Obligations",
   // },
-  {
-    id: 9,
-    name: "Insurance Coverage",
-  },
+  // {
+  //   id: 9,
+  //   name: "Insurance Coverage",
+  // },
   // {
   //   id: 10,
   //   name: "Supply Chain Information",

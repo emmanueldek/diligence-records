@@ -3,13 +3,14 @@ import {
   TOrgFinancialStatements,
   TTableOrgFinancialStatements,
 } from "@/types/organizationTypes";
-import AvailableDocuments from "./AvailableDocuments";
+// import AvailableDocuments from "./AvailableDocuments";
 import { GoPaperclip } from "react-icons/go";
 import React, { useState } from "react";
 import Home from "@/pages/viewDoc/Home";
 import { HiArrowNarrowLeft } from "react-icons/hi";
 import { FaDownload } from "react-icons/fa6";
 import { RECORDS_URLS } from "@/utils/backendURLs";
+import Loader from "@/components/Loader";
 
 type TProps = {
   data?: TOrgFinancialStatements[];
@@ -26,6 +27,7 @@ const columns: TColumn[] = [
 const FinancialStatementsTab: React.FC<TProps> = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const userAuth = localStorage.getItem("authToken") as string;
+  const [loading, setLoading] = useState(false);
 
   console.log(data);
 
@@ -35,6 +37,7 @@ const FinancialStatementsTab: React.FC<TProps> = ({ data }) => {
   console.log(data);
 
   const downloadPdf = async (fileName: string | undefined) => {
+    setLoading(true);
     try {
       const response = await fetch(
         `${RECORDS_URLS.BASE_URL}${RECORDS_URLS.RETRIEVEPDF}?fileName=${fileName}`,
@@ -48,6 +51,7 @@ const FinancialStatementsTab: React.FC<TProps> = ({ data }) => {
       );
 
       const data = await response.blob();
+      setLoading(false);
       const hrefUrl = URL.createObjectURL(data);
       window.open(hrefUrl, "_blank");
     } catch (error) {
@@ -139,13 +143,14 @@ const FinancialStatementsTab: React.FC<TProps> = ({ data }) => {
               </tbody>
             </table>
           </div>
-          <div className="mt-6 w-full">
+          {/* <div className="mt-6 w-full">
             <AvailableDocuments data={data} type="pdf" />
-          </div>
+          </div> */}
         </>
       ) : (
         <Home fileUrl={""} />
       )}
+      {loading && <Loader detail="Fetching Record..." />}
     </div>
   );
 };

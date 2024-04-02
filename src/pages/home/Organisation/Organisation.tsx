@@ -12,7 +12,7 @@ import {
   BankruptcyHistoryTab,
   TaxComplianceTab,
   LegalRegulatoryTab,
-  InsuranceCoverageTab,
+  // InsuranceCoverageTab,
   OwnershipStructureTab,
   ReferencesTab,
 } from "./tabCards";
@@ -187,9 +187,9 @@ function OrganisationProfile() {
                     data={data?.data?.environmentalCompliance}
                   />
                 )} */}
-                {activeTab === "Insurance Coverage" && (
+                {/* {activeTab === "Insurance Coverage" && (
                   <InsuranceCoverageTab data={data?.data.insuranceCoverage} />
-                )}
+                )} */}
                 {/* {activeTab === "Supply Chain Information" && (
                   <SupplyChainTab data={data?.data.supplyChainInformation} />
                 )} */}

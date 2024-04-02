@@ -1,15 +1,21 @@
-import { PrimaryBtn } from "@/components";
+// import { PrimaryBtn } from "@/components";
 import { RECORDS_URLS } from "@/utils/backendURLs";
+import Loader from "@/components/Loader";
+import { useState } from "react";
+import { FaDownload } from "react-icons/fa6";
 
 const columns: any[] = [
   { field: "name", header: "Name" },
   { field: "referenceDate", header: "Reference Date" },
-  { field: "rrDocuments", header: "" },
+  { field: "rrDocuments", header: "Attachment" },
 ];
 function ReferencesTab({ data }: any) {
   const userAuth = localStorage.getItem("authToken") as string;
+  const [loading, setLoading] = useState(false);
 
   const downloadPdf = async (fileName: string | undefined) => {
+    setLoading(true);
+
     try {
       const response = await fetch(
         `${RECORDS_URLS.BASE_URL}${RECORDS_URLS.RETRIEVEPDF}?fileName=${fileName}`,
@@ -23,6 +29,7 @@ function ReferencesTab({ data }: any) {
       );
 
       const data = await response.blob();
+      setLoading(false);
       const hrefUrl = URL.createObjectURL(data);
       window.open(hrefUrl, "_blank");
     } catch (error) {
@@ -149,16 +156,27 @@ function ReferencesTab({ data }: any) {
                   className="h-[40px]  text-sm text-[#151515] font-[500]"
                 >
                   {columns?.map((col: any, i) => (
-                    <td key={i} className="pl-4 font-light text-textGrey">
-                      {row[col.field as keyof any]}
-                    </td>
+                    <>
+                      {col.field === "rrDocuments" ? (
+                        <td className="w-[100px] overflow-hidden truncate flex justify-center h-full mt-3">
+                          {" "}
+                          <button onClick={() => downloadPdf(row.rrDocuments)}>
+                            <FaDownload />
+                          </button>
+                        </td>
+                      ) : (
+                        <td key={i} className="pl-4 font-light text-textGrey">
+                          {row[col.field as keyof any]}
+                        </td>
+                      )}
+                    </>
                   ))}
                 </tr>
               ))}
           </tbody>
         </table>
       </div>
-      <div className="mt-6 w-full">
+      {/* <div className="mt-6 w-full">
         <div className="w-full">
           <div className="border-b border-grey-50 pb-3">
             <p className="font-bold text-grey-900 text-xl">Documents</p>
@@ -181,21 +199,17 @@ function ReferencesTab({ data }: any) {
                       </div>
                     </button>
                   </div>
-
-                  {/* </a> */}
-
                   <h4 className="font-bold leading-[20px] mt-3 mb-1 overflow-auto truncate">
                     {doc.icDocuments}
                   </h4>
-                  <p className="font-light text-grey-400 text-sm leading-[20px]">
-                    {/* {date} */}
-                  </p>
+                  <p className="font-light text-grey-400 text-sm leading-[20px]"></p>
                 </div>
               );
             })}
           </div>
         </div>
-      </div>
+      </div> */}
+      {loading && <Loader detail="Fetching Record..." />}
     </div>
   );
 }

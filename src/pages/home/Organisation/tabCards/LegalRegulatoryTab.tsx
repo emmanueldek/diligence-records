@@ -1,3 +1,4 @@
+import Loader from "@/components/Loader";
 import { TColumn, TOrgLegalRegulatory } from "@/types/organizationTypes";
 // import { PrimaryBtn } from "@/components";
 import { RECORDS_URLS } from "@/utils/backendURLs";
@@ -114,6 +115,7 @@ const LegalRegulatoryTab: React.FC<TProps> = ({ data }) => {
           </div>
         </div>
       </div> */}
+      {loading && <Loader detail="Fetching Record..." />}
     </div>
   );
 };

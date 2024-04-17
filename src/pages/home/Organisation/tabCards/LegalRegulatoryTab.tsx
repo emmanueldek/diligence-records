@@ -1,8 +1,10 @@
 import Loader from "@/components/Loader";
+import Toast from "@/config/Toast";
 import { TColumn, TOrgLegalRegulatory } from "@/types/organizationTypes";
 // import { PrimaryBtn } from "@/components";
 import { RECORDS_URLS } from "@/utils/backendURLs";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { FaDownload } from "react-icons/fa6";
 
 type TProps = {
@@ -33,6 +35,12 @@ const LegalRegulatoryTab: React.FC<TProps> = ({ data }) => {
           },
         },
       );
+
+      if (response.status === 404) {
+        setLoading(false);
+        toast.error("File not found");
+        return;
+      }
 
       const data = await response.blob();
       setLoading(false);

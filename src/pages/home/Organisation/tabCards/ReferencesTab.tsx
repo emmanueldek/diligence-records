@@ -3,6 +3,7 @@ import { RECORDS_URLS } from "@/utils/backendURLs";
 import Loader from "@/components/Loader";
 import { useState } from "react";
 import { FaDownload } from "react-icons/fa6";
+import toast from "react-hot-toast";
 
 const columns: any[] = [
   { field: "name", header: "Name" },
@@ -28,6 +29,11 @@ function ReferencesTab({ data }: any) {
         },
       );
 
+      if (response.status === 404) {
+        setLoading(false);
+        toast.error("File not found");
+        return;
+      }
       const data = await response.blob();
       setLoading(false);
       const hrefUrl = URL.createObjectURL(data);

@@ -4,6 +4,7 @@ import { RECORDS_URLS } from "@/utils/backendURLs";
 import { FaDownload } from "react-icons/fa6";
 import { useState } from "react";
 import Loader from "@/components/Loader";
+import toast from "react-hot-toast";
 
 const columns: TColumn[] = [
   { field: "date", header: "Date" },
@@ -35,6 +36,11 @@ const BankruptcyHistoryTab: React.FC<TProps> = ({ data }) => {
         },
       );
 
+      if (response.status === 404) {
+        setLoading(false);
+        toast.error("File not found");
+        return;
+      }
       const data = await response.blob();
       setLoading(false);
       const hrefUrl = URL.createObjectURL(data);

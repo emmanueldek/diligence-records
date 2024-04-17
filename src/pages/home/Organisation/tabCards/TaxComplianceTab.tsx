@@ -4,6 +4,7 @@ import { FaDownload } from "react-icons/fa6";
 import { RECORDS_URLS } from "@/utils/backendURLs";
 import { useState } from "react";
 import Loader from "@/components/Loader";
+import toast from "react-hot-toast";
 
 type TProps = {
   data?: TOrgTaxCompliance[];
@@ -35,6 +36,11 @@ const TaxComplianceTab: React.FC<TProps> = ({ data }) => {
         },
       );
 
+      if (response.status === 404) {
+        setLoading(false);
+        toast.error("File not found");
+        return;
+      }
       const data = await response.blob();
       setLoading(false);
       const hrefUrl = URL.createObjectURL(data);

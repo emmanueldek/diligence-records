@@ -11,6 +11,7 @@ import { HiArrowNarrowLeft } from "react-icons/hi";
 import { FaDownload } from "react-icons/fa6";
 import { RECORDS_URLS } from "@/utils/backendURLs";
 import Loader from "@/components/Loader";
+import toast from "react-hot-toast";
 
 type TProps = {
   data?: TOrgFinancialStatements[];
@@ -50,6 +51,11 @@ const FinancialStatementsTab: React.FC<TProps> = ({ data }) => {
         },
       );
 
+      if (response.status === 404) {
+        setLoading(false);
+        toast.error("File not found");
+        return;
+      }
       const data = await response.blob();
       setLoading(false);
       const hrefUrl = URL.createObjectURL(data);

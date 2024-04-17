@@ -1,5 +1,4 @@
 import Loader from "@/components/Loader";
-import Toast from "@/config/Toast";
 import { TColumn, TOrgLegalRegulatory } from "@/types/organizationTypes";
 // import { PrimaryBtn } from "@/components";
 import { RECORDS_URLS } from "@/utils/backendURLs";

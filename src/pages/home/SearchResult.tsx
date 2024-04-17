@@ -355,7 +355,7 @@ function SearchResult() {
                         <Organisation
                           id={item?._id}
                           key={item?._id}
-                          image={item?.organizationLogo}
+                          image={item?.profile?.organizationLogo}
                           industry={item?.profile?.industry}
                           location={item?.profile?.location}
                           name={item?.profile?.organizationName}

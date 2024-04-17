@@ -100,7 +100,6 @@ export type TWorkspaceMembersSchema = {
 export type UnknownObject = Record<string>;
 export type TOrganizationSearchSchema = {
   createdAt: string;
-  organizationLogo: string;
   partnerRequestId: string;
   profile: {
     industry: string;
@@ -108,6 +107,7 @@ export type TOrganizationSearchSchema = {
     organizationDescription: string;
     organizationName: string;
     organizationSize: string;
+    organizationLogo: string;
   };
   financialStatements: UnknownObject;
   taxCompliance: UnknownObject;

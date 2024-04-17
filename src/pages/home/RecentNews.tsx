@@ -69,14 +69,12 @@ function RecentNews() {
       <h1 className="text-2xl font-semibold">Recent News</h1>
 
       <div className="h-[80vh] transition-all duration-150 scrollbar-hide overflow-hidden hover:overflow-y-scroll">
-        {newData?.length === 0 || newData === undefined ? (
-          <>
-            <NoState
-              img={NoStateImg}
-              title="Nothing Here Yet!"
-              description="Add more profiles to your watchlist to see latest news about them."
-            />
-          </>
+        {newData?.length === 0 ? (
+          <NoState
+            img={NoStateImg}
+            title="Nothing Here Yet!"
+            description="Add more profiles to your watchlist to see latest news about them."
+          />
         ) : (
           newData?.map((el, i) => {
             return <NewsCard key={`${i}-news`} data={el} />;

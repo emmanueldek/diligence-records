@@ -1,7 +1,10 @@
 import { capitalizeWords } from "@/libs/CapitalizeWords";
 import { TOrgProfile } from "@/types/organizationTypes";
-import { PrimaryBtn } from "@/components";
 import { RECORDS_URLS } from "@/utils/backendURLs";
+import acrobatLogo from "@/assets/images/acrobat2.png";
+import Loader from "@/components/Loader";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 type TProps = {
   profileData?: TOrgProfile;
@@ -9,8 +12,11 @@ type TProps = {
 
 const ProfileTab: React.FC<TProps> = ({ profileData }) => {
   const userAuth = localStorage.getItem("authToken") as string;
+  const [loading, setLoading] = useState(false);
 
   const downloadPdf = async (fileName: string | undefined) => {
+    setLoading(true);
+
     try {
       const response = await fetch(
         `${RECORDS_URLS.BASE_URL}${RECORDS_URLS.RETRIEVEPDF}?fileName=${fileName}`,
@@ -23,11 +29,18 @@ const ProfileTab: React.FC<TProps> = ({ profileData }) => {
         },
       );
 
+      if (response.status === 404) {
+        setLoading(false);
+        toast.error("File not found");
+        return;
+      }
       const data = await response.blob();
       const hrefUrl = URL.createObjectURL(data);
+      setLoading(false);
       window.open(hrefUrl, "_blank");
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
   return (
@@ -68,26 +81,20 @@ const ProfileTab: React.FC<TProps> = ({ profileData }) => {
         </div>
 
         {profileData?.cacDocument ? (
-          <div className="w-full sm:w-[190px] md:w-[250px]">
-            <div className="w-full h-[160px] bg-grey-50 rounded-md overflow-hidden group">
-              <button onClick={() => downloadPdf(profileData.cacDocument)}>
-                <div className="hidden h-full transition-all group-hover:flex justify-center items-center group-hover:bg-grey-200">
-                  <PrimaryBtn text="open" />
-                </div>
-              </button>
-            </div>
-
-            {/* </a> */}
-
-            <h4 className="font-bold leading-[20px] mt-3 mb-1 overflow-auto truncate">
-              {}
-            </h4>
-            <p className="font-light text-grey-400 text-sm leading-[20px]"></p>
+          <div
+            className="mt-3 hover:bg-grey-50 w-[250px] flex flex-col items-center py-[25px] rounded-lg cursor-pointer transition-all duration-300 ease-linear hover:scale-95 hover:transform"
+            onClick={() => downloadPdf(profileData?.cacDocument)}
+          >
+            <img src={acrobatLogo} alt="document_logo" className="w-[200px]" />
+            <p className="text-grey-400 font-medium mt-3">
+              {profileData?.cacDocument}
+            </p>
           </div>
         ) : (
           <p className="text-grey-400 font-medium mt-3">No document</p>
         )}
       </div>
+      {loading && <Loader detail="Fetching Record..." />}
     </div>
   );
 };

@@ -6,6 +6,22 @@ import { getAllNews } from "@/services/home";
 import { useState } from "react";
 // import { TArticle } from "@/types/homeTypes";
 import NoState from "@/components/nostate";
+import n1 from "@/assets/images/news-icons/n1.jpeg";
+import n2 from "@/assets/images/news-icons/n2.jpeg";
+import n3 from "@/assets/images/news-icons/n3.jpeg";
+import n4 from "@/assets/images/news-icons/n4.jpeg";
+import n5 from "@/assets/images/news-icons/n5.jpeg";
+import n6 from "@/assets/images/news-icons/n6.jpeg";
+import n7 from "@/assets/images/news-icons/n7.jpeg";
+import n8 from "@/assets/images/news-icons/n8.jpeg";
+import n9 from "@/assets/images/news-icons/n9.jpeg";
+import n10 from "@/assets/images/news-icons/n10.jpeg";
+import n11 from "@/assets/images/news-icons/n11.jpeg";
+import n12 from "@/assets/images/news-icons/n12.jpeg";
+import n13 from "@/assets/images/news-icons/n13.jpeg";
+import n14 from "@/assets/images/news-icons/n14.jpeg";
+import n15 from "@/assets/images/news-icons/n15.jpeg";
+import n16 from "@/assets/images/news-icons/n16.jpeg";
 
 type TProps = {
   data?: any;
@@ -63,7 +79,46 @@ function RecentNews() {
   const [page] = useState(1);
   const { data } = useQuery(["getAllNews", page], () => getAllNews(page));
 
+  const newsPlaceholders = [
+    n1,
+    n2,
+    n3,
+    n4,
+    n5,
+    n6,
+    n7,
+    n8,
+    n9,
+    n10,
+    n11,
+    n12,
+    n13,
+    n14,
+    n15,
+    n16,
+  ];
+
   const newData = data?.data?.data?.data;
+
+  function getRandomIntInclusive(min: number, max: number) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  let randomIndex = 0;
+
+  let formattedNewsData = newData?.map((news: any) => {
+    for (let index = 0; index <= newData.length; index++) {
+      randomIndex = getRandomIntInclusive(0, 16);
+    }
+
+    return {
+      ...news,
+      image: newsPlaceholders[randomIndex],
+    };
+  });
+
   return (
     <Wrapper className="bg-white">
       <h1 className="text-2xl font-semibold">Recent News</h1>
@@ -76,7 +131,7 @@ function RecentNews() {
             description="Add more profiles to your watchlist to see latest news about them."
           />
         ) : (
-          newData?.map((el, i) => {
+          formattedNewsData?.map((el, i) => {
             return <NewsCard key={`${i}-news`} data={el} />;
           })
         )}

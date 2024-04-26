@@ -4,7 +4,6 @@ import { TColumn, TOrgLegalRegulatory } from "@/types/organizationTypes";
 import { RECORDS_URLS } from "@/utils/backendURLs";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { FaDownload } from "react-icons/fa6";
 
 type TProps = {
   data?: TOrgLegalRegulatory[];

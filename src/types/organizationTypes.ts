@@ -89,7 +89,7 @@ export type TOrgLegalRegulatory = {
   year: string;
   fillingStatus: string;
   totalTaxLiability: string;
-  lgrDocuments: string;
+  lgrDocuments: string[];
 };
 export type TTableOrgLegalRegulatory = {
   year: string;

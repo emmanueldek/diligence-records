@@ -64,28 +64,33 @@ const LegalRegulatoryTab: React.FC<TProps> = ({ data }) => {
             </tr>
           </thead>
 
-          <tbody className="w-full">
+          <tbody className="w-full divide divide-y divide-grey-50">
             {data &&
               data.map((row, i) => (
                 <tr
                   key={i}
                   className="h-[40px] text-sm text-[#151515] font-[500]"
                 >
-                  {columns?.map((col: TColumn, i) => (
-                    <>
+                  {columns?.map((col: TColumn, j) => (
+                    <div key={j}>
                       {col.field === "lgrDocuments" ? (
-                        <td className="w-[100px] overflow-hidden truncate flex justify-center h-full mt-3">
-                          {" "}
-                          <button onClick={() => downloadPdf(row.lgrDocuments)}>
-                            <FaDownload />
-                          </button>
+                        <td className="flex justify-center flex-col gap-2">
+                          {row.lgrDocuments.map((lgrDoc, k) => (
+                            <p
+                              className="text-xs text-[#0029FD] cursor-pointer"
+                              onClick={() => downloadPdf(lgrDoc)}
+                              key={k}
+                            >
+                              {lgrDoc}
+                            </p>
+                          ))}
                         </td>
                       ) : (
                         <td key={i} className="pl-4 font-light text-textGrey">
                           {row[col.field as keyof TOrgLegalRegulatory]}
                         </td>
                       )}
-                    </>
+                    </div>
                   ))}
                 </tr>
               ))}

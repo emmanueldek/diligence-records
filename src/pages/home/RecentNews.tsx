@@ -58,7 +58,7 @@ const NewsCard = ({ data }: TProps) => {
         </h2>
 
         <p className="font-light text-grey-400 leading-[19px] w-full  text-ellipsis text-sm md:w-[90%]">
-          {data?.description}
+          {data?.description.substring(0, 200) + "..."}
         </p>
 
         <div className="flex justify-start items-center text-sm space-x-4">

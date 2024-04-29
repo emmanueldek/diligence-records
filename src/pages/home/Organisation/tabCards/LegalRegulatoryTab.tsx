@@ -68,28 +68,27 @@ const LegalRegulatoryTab: React.FC<TProps> = ({ data }) => {
               data.map((row, i) => (
                 <tr
                   key={i}
-                  className="h-[40px] text-sm text-[#151515] font-[500]"
+                  className="min-h-[40px] text-sm text-[#151515] font-[500]"
                 >
                   {columns?.map((col: TColumn, j) => (
-                    <div key={j}>
+                    <td className="pl-4" key={j}>
                       {col.field === "lgrDocuments" ? (
-                        <td className="flex justify-center flex-col gap-2">
-                          {row.lgrDocuments.map((lgrDoc, k) => (
-                            <p
-                              className="text-xs text-[#0029FD] cursor-pointer"
-                              onClick={() => downloadPdf(lgrDoc)}
-                              key={k}
-                            >
-                              {lgrDoc}
-                            </p>
+                        <>
+                          {row[col.field].map((doc: string, k: number) => (
+                            <div className="flex flex-col" key={k}>
+                              <p
+                                className="text-xs text-[#0029FD] cursor-pointer mb-2"
+                                onClick={() => downloadPdf(doc)}
+                              >
+                                {doc}
+                              </p>
+                            </div>
                           ))}
-                        </td>
+                        </>
                       ) : (
-                        <td key={i} className="pl-4 font-light text-textGrey">
-                          {row[col.field as keyof TOrgLegalRegulatory]}
-                        </td>
+                        <> {row[col.field as keyof TOrgLegalRegulatory]}</>
                       )}
-                    </div>
+                    </td>
                   ))}
                 </tr>
               ))}

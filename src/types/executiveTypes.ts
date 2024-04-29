@@ -81,7 +81,7 @@ export type TExeLegalRegulatory = {
   year: string;
   fillingStatus: string;
   totalTaxLiability: string;
-  lgrDocuments: string;
+  lgrDocuments: string[];
 };
 
 export type TExeEnvironmentalCompliance = {

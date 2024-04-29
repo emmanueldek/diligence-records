@@ -76,11 +76,15 @@ const LegalRegulatoryTab: React.FC<TProps> = ({ data }) => {
                   className="w-full sm:w-[190px] md:w-[250px]"
                 >
                   <div className="w-full h-[160px] bg-grey-50 rounded-md overflow-hidden group">
-                    <a href={doc.lgrDocuments}>
-                      <div className="hidden h-full transition-all group-hover:flex justify-center items-center group-hover:bg-grey-200">
-                        <PrimaryBtn text="open" />
-                      </div>
-                    </a>
+                    {doc.lgrDocuments.map((doc, index) => {
+                      return (
+                        <a href={doc} key={index}>
+                          <div className="hidden h-full transition-all group-hover:flex justify-center items-center group-hover:bg-grey-200">
+                            <PrimaryBtn text="open" />
+                          </div>
+                        </a>
+                      );
+                    })}
                   </div>
 
                   {/* </a> */}

@@ -168,7 +168,7 @@ export type TTableOrgFinancialStatements = {
 };
 
 export type TColumn = {
-  field: string;
+  field: string | string[];
   header: string;
 };
 
